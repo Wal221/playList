@@ -61,12 +61,63 @@ public class MusicaController {
 
     }
 
-    public void passarMusica() {
+//    public MusicDTO passarMusica(int aux) {
+//        MusicDTO prox = this.primeiro;
+//        aux = 0;
+//        
+//        if(cont == 0){
+//            return null ;
+//        }
+//        if(aux == 0){
+//            prox = prox.getProxima();
+//        }else if(aux == 1){
+//            prox = prox.getAnterior();
+//        }
+//        return prox;
+//      
+//                
+//
+//    }
 
-    }
+    public void remover(String nome) {
+          MusicDTO excluir = busca(nome);
+        if(cont == 0){
+            System.out.println("Play List vazia");
+            return;
+        }
 
-    public void remover() {
+          //se ouver somente um elemento na lista sera removido
+         if(excluir.getAnterior() == null && excluir.getProxima()== null){
+            this.primeiro = null;
+            this.ultimo = null;
+            cont --;
 
+        }
+         //remove o primeiro elemento
+         else if(excluir.getAnterior() == null){
+             this.primeiro = this.primeiro.getProxima();
+             this.primeiro.setAnterior(null);
+             this.cont --;
+
+
+        }//remove o ultimo elemento
+         else if(excluir.getProxima() == null){
+
+          this.ultimo = this.ultimo.getAnterior();
+          //vale ressaltar que essa forma de fazer o elemento aponta para o anterior , e equivalente a
+             //fazer a elemento aponta para o null , ja que e o ultimo elemento
+           this.ultimo.setProxima(excluir.getProxima());
+             cont --;
+
+        }
+        else {
+            //para remover um elemento do meio da lista
+            excluir.getAnterior().setProxima(excluir.getProxima());
+            excluir.getProxima().setAnterior(excluir.getAnterior());
+            excluir = excluir.getProxima();
+             cont --;
+
+        }
     }
 
     public void tamanho() {
@@ -88,7 +139,7 @@ public class MusicaController {
         for (int i = 0; i < this.cont; i++) {
 
             if (i == aux) {
-                builder.append("Nome da musica:" + atual.getNome() + "\t");
+                builder.append("Nome da musica:" + atual.getNome() + "\n");
                 builder.append("Duração: " + atual.getDuracaoMusic() + ";");
 
             }
@@ -100,7 +151,7 @@ public class MusicaController {
     @Override
     public String toString() {
         if (this.cont == 0) {
-            return " ";
+            return " Não a musicas na playList";
 
         }
         StringBuilder builder = new StringBuilder();
@@ -149,12 +200,13 @@ public class MusicaController {
             //vou recupera os nomes e sempre guarda a primeira letra para ser comparadas
 
             for(MusicDTO j = i.getProxima(); j != null ; j = j.getProxima()){
-
+                //a primeira palavra a ser comparada dever ser atualizada nesse segundo
+                //for ja que o segundo for so vai termina quando o proximo obj for null
                 char primeira = menor.getNome().charAt(0);
-                //tambem guardo a primeira letra da segunda palavra
+               
                 char seg = j.getNome().charAt(0);
                 if(seg < primeira) {
-                    menor = j; // menor = Almir Sater
+                    menor = j; 
                 }
             }
             String nomeMusic = i.getNome();// Bolsa nova
