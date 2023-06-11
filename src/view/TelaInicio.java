@@ -4,12 +4,19 @@
  */
 package view;
 
+import Controller.MusicaController;
+import DTO.MusicDTO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Administrador
  */
 public class TelaInicio extends javax.swing.JFrame {
-
+   
+    MusicaController music = new MusicaController();
+            
+            
     /**
      * Creates new form TelaInicio
      */
@@ -152,6 +159,11 @@ public class TelaInicio extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vieww/imag/icons8-reproduzir-25 (1).png"))); // NOI18N
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vieww/imag/icons8-fim-25.png"))); // NOI18N
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vieww/imag/icons8-fim-25 (1).png"))); // NOI18N
 
@@ -232,6 +244,15 @@ public class TelaInicio extends javax.swing.JFrame {
     private void jLabel2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel2KeyPressed
         new telaMusica().setVisible(true);
     }//GEN-LAST:event_jLabel2KeyPressed
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+          music.add("Casa nova", 2.45);
+          music.add("kdmw",5.6);
+        int i = 1;
+        
+         //JOptionPane.showMessageDialog(null, music.passarMusica(i).toString());
+         
+    }//GEN-LAST:event_jLabel6MouseClicked
 
     /**
      * @param args the command line arguments
