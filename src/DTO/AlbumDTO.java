@@ -4,44 +4,81 @@
  */
 package DTO;
 
+import Controller.MusicaController;
+
 /**
  *
  * @author Administrador
  */
 public class AlbumDTO {
-    
-    private String Artista;
-    
-    private MusicDTO musicas;
-    
-    private AlbumDTO album;
 
+    private String nome;
+
+    private MusicaController musicas;
+
+    private AlbumDTO anterior;
+    private AlbumDTO proxima;
     
-    public AlbumDTO getAlbum() {
-        return album;
+    
+    
+    
+    
+
+    public AlbumDTO(MusicaController musicas) {
+        this.musicas =  musicas;
     }
 
-    public void setAlbum(AlbumDTO album) {
-        this.album = album;
-    }
-    
-
-    public String getArtista() {
-        return Artista;
+    public AlbumDTO() {
     }
 
-    public void setArtista(String Artista) {
-        this.Artista = Artista;
+
+    public AlbumDTO(String nome) {
+        this.nome = nome;
     }
 
-    public MusicDTO getMusicas() {
+    public AlbumDTO(String nome, MusicaController  musicas) {
+        this.nome = nome;
+        this.musicas = musicas;
+    }
+
+    public AlbumDTO getAnterior() {
+        return anterior;
+    }
+
+    public void setAnterior(AlbumDTO anterior) {
+        this.anterior = anterior;
+    }
+
+    public AlbumDTO getProxima() {
+        return proxima;
+    }
+
+    public void setProxima(AlbumDTO proxima) {
+        this.proxima = proxima;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public MusicaController  getMusicas() {
         return musicas;
     }
 
-    public void setMusicas(MusicDTO musicas) {
+    public void setMusicas(MusicaController  musicas) {
         this.musicas = musicas;
     }
-    
-    
-    
+
+
+    @Override
+    public String toString() {
+        return
+                "nome='" + nome + '\'' +
+                ", musicas=" + musicas +
+                '}';
+    }
 }
